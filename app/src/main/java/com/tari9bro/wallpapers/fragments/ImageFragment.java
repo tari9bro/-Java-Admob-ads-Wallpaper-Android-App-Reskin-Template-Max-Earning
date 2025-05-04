@@ -88,7 +88,16 @@ public class ImageFragment extends Fragment {
 
 
         List<String> fileList = FileUtilsHelper.getFilesFromAssets(requireContext());
-        FileAdapter2 fileAdapter = new FileAdapter2(requireContext(), fileList, requireActivity(),fragmentManager); // Adjust the placeholder dimensions as per your preference
+        FileAdapter2 fileAdapter = new FileAdapter2(requireContext(), fileList, requireActivity(),fragmentManager, (imageFileName, position) -> {
+            // Handle image click here
+           // Toast.makeText(requireContext(), "Clicked: " + imageFileName, Toast.LENGTH_SHORT).show();
+
+            // Example: show dialog
+           // wallpaperSetter.showWallpaperDialog(imageFileName);
+            manageClick(fileList);
+            // Optional: store selected position
+          //  synchronizedPosition.set(position);
+        }); // Adjust the placeholder dimensions as per your preference
        recyclerView.setAdapter(fileAdapter);
 
 
@@ -119,6 +128,8 @@ public class ImageFragment extends Fragment {
                     Download.setVisibility(View.VISIBLE);
                     setWall.setVisibility(View.VISIBLE);
                     share.setVisibility(View.VISIBLE);
+
+
                 } else {
                     badge.setVisibility(View.VISIBLE);
                     if (  !pref.LoadIntArray("unlockedList").contains(synchronizedPosition.get()) ){
@@ -140,15 +151,7 @@ public class ImageFragment extends Fragment {
 
                             ViewGroup container = getView().findViewById(R.id.relativ);
                             container.addView(badge);
-
                         }
-
-
-
-
-
-
-
                     }else{
                         Download.setVisibility(View.VISIBLE);
                         setWall.setVisibility(View.VISIBLE);
@@ -168,19 +171,7 @@ public class ImageFragment extends Fragment {
         share.setOnClickListener(view -> settings.sharTheApp());
         badge.setOnClickListener(view -> {
 
-            if ( containsDigitThree(synchronizedPosition.get()) && !pref.LoadIntArray("unlockedList").contains(synchronizedPosition.get())) {
-                if (rewardedAd != null ){
-                    ShowDialog(fileList.get(synchronizedPosition.get()));
-                }else{
-                    Toast.makeText(requireContext(),"not ready, try later", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }else {
-
-                wallpaperSetter.showWallpaperDialog(fileList.get(synchronizedPosition.get()));
-
-            }
+           manageClick(fileList);
 
         });
         setWall.setOnClickListener(view -> {
@@ -199,6 +190,22 @@ public class ImageFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    private void manageClick(List<String> fileList) {
+        if ( containsDigitThree(synchronizedPosition.get()) && !pref.LoadIntArray("unlockedList").contains(synchronizedPosition.get())) {
+            if (rewardedAd != null ){
+                ShowDialog(fileList.get(synchronizedPosition.get()));
+            }else{
+                Toast.makeText(requireContext(),"not ready, try later", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }else {
+
+            wallpaperSetter.showWallpaperDialog(fileList.get(synchronizedPosition.get()));
+
+        }
     }
 
     public static boolean containsDigitThree(int number) {

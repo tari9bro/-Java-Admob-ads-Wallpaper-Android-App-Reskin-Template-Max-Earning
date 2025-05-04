@@ -28,6 +28,7 @@ public class FileAdapter2 extends RecyclerView.Adapter<FileAdapter2.FileViewHold
     private final Context context;
     private final Activity activity;
     private final List<String> fileList;
+    private OnImageClickListener listener;
 
 
 
@@ -57,11 +58,12 @@ public class FileAdapter2 extends RecyclerView.Adapter<FileAdapter2.FileViewHold
 
     FragmentManager fragmentManager;
 
-    public FileAdapter2(Context context, List<String> fileList, Activity activity,FragmentManager fragmentManager) {
+    public FileAdapter2(Context context, List<String> fileList, Activity activity,FragmentManager fragmentManager, OnImageClickListener listener) {
         this.context = context;
         this.fileList = fileList;
           this.fragmentManager = fragmentManager;
         this.activity = activity;
+        this.listener = listener;
     }
 
     @NonNull
@@ -118,6 +120,9 @@ public class FileAdapter2 extends RecyclerView.Adapter<FileAdapter2.FileViewHold
 
 
 
+        holder.itemView.setOnClickListener(v -> {
+
+        });
 
 
 
@@ -125,7 +130,9 @@ public class FileAdapter2 extends RecyclerView.Adapter<FileAdapter2.FileViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (listener != null) {
+                    listener.onImageClick(fileList.get(position), position);
+                }
                 setFileNameStr(fileName);
 
             }
