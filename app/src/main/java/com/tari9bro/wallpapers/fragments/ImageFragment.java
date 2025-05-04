@@ -208,8 +208,8 @@ public class ImageFragment extends Fragment {
 
     private void ShowDialog(String fileName) {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireContext());
-        dialog.setTitle(R.string.exit_dialog_title);
-        dialog.setIcon(R.drawable.ic_exit);
+        dialog.setTitle(R.string.dialogTitle);
+        dialog.setIcon(R.drawable.locked);
         dialog.setMessage(R.string.rewarded_dialog);
         dialog.setCancelable(false);
         dialog.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
