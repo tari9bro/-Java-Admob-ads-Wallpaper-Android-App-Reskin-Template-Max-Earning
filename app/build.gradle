@@ -23,8 +23,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
     }
 }
 
@@ -63,16 +66,15 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
 
     implementation libs.glide
-
     implementation(platform(libs.kotlin.bom))
-    implementation libs.audience.network.sdk
     implementation libs.work.runtime
     implementation libs.recyclerview.animators
-
-
-
+    implementation(platform(libs.androidx.compose.bom.v20241001))
     implementation(libs.androidx.lifecycle.process)
     implementation libs.oopsnointernet
 
     implementation libs.play.services.ads.identifier
+    implementation(libs.guava)
+//add this library
+    implementation libs.play.services.ads
 }

@@ -169,7 +169,7 @@ public class ImageFragment extends Fragment {
         badge.setOnClickListener(view -> {
 
             if ( containsDigitThree(synchronizedPosition.get()) && !pref.LoadIntArray("unlockedList").contains(synchronizedPosition.get())) {
-                if (rewardedAd != null && !rewardedAd.isAdInvalidated()){
+                if (rewardedAd != null ){
                     ShowDialog(fileList.get(synchronizedPosition.get()));
                 }else{
                     Toast.makeText(requireContext(),"not ready, try later", Toast.LENGTH_SHORT).show();

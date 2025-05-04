@@ -1,7 +1,6 @@
 package com.tari9bro.wallpapers.activity;
 
 
-import static com.facebook.ads.AdSettings.IntegrationErrorMode.INTEGRATION_ERROR_CRASH_DEBUG_MODE;
 import static com.tari9bro.wallpapers.ads.Ads.rewardedAd;
 
 import android.os.Build;
@@ -11,8 +10,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.facebook.ads.AdSettings;
-import com.facebook.ads.AudienceNetworkAds;
 import com.tari9bro.wallpapers.R;
 import com.tari9bro.wallpapers.ads.Ads;
 import com.tari9bro.wallpapers.fragments.RecyclerFragment;
@@ -52,9 +49,7 @@ public class MainActivity extends AppCompatActivity  {
         if (!prefs.LoadBool("Permission")) {
             settings.showPermissionDialog();        }
 
-        AudienceNetworkAds.initialize(this);
-        AdSettings.setIntegrationErrorMode(INTEGRATION_ERROR_CRASH_DEBUG_MODE);
-        AdSettings.addTestDevice("65f07fc3-1f8c-4a08-815a-49bc93c63a54");
+
 
 
         clickListenerHelper = new ClickListenerHelper(MainActivity.this, this);
@@ -84,13 +79,6 @@ public class MainActivity extends AppCompatActivity  {
     protected void onDestroy() {
         if (ads.getAdView() != null) {
             ads.getAdView() .destroy();
-        }
-        if (ads.getInterstitialAd() != null) {
-            ads.getInterstitialAd().destroy();
-        }
-        if (rewardedAd != null) {
-            rewardedAd.destroy();
-            rewardedAd = null;
         }
         super.onDestroy();
     }

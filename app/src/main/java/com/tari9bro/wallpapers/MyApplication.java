@@ -2,7 +2,7 @@ package com.tari9bro.wallpapers;
 
 import android.app.Application;
 
-import com.facebook.ads.AudienceNetworkAds;
+import com.google.android.gms.ads.MobileAds;
 
 public class MyApplication extends Application {
 
@@ -12,7 +12,12 @@ public class MyApplication extends Application {
     {
         super.onCreate();
 
-        AudienceNetworkAds.initialize(this);
+        new Thread(
+                () -> {
+                    // Initialize the Google Mobile Ads SDK on a background thread.
+                    MobileAds.initialize(this, initializationStatus -> {});
+                })
+                .start();
     }
 
 }
