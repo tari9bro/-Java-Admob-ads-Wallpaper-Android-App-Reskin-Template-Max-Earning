@@ -33,16 +33,17 @@ The project currently sets `minSdk 24`, `compileSdk 35`, `targetSdk 35`, and app
 
 ```bash
 git clone https://github.com/tari9bro/-Java-Admob-ads-Wallpaper-Android-App-Reskin-Template-Max-Earning.git
-cd -Java-Admob-ads-Wallpaper-Android-App-Reskin-Template-Max-Earning
+cd -- -Java-Admob-ads-Wallpaper-Android-App-Reskin-Template-Max-Earning
 ```
 
 You can also open the cloned project folder directly in Android Studio and allow Gradle sync to complete.
 
 ## Build
 
-On macOS/Linux:
+On macOS/Linux (make the wrapper executable first if needed):
 
 ```bash
+chmod +x gradlew
 ./gradlew assembleDebug
 ```
 
