@@ -93,3 +93,10 @@ This repository includes an MIT License; see [LICENSE](LICENSE). The license and
 ## Repository
 
 [GitHub repository](https://github.com/tari9bro/-Java-Admob-ads-Wallpaper-Android-App-Reskin-Template-Max-Earning)
+
+
+## CI and preview releases
+
+The GitHub Actions workflow in `.github/workflows/android-ci.yml` runs unit tests and builds a debug APK on pushes and pull requests to `main`. It uploads the APK as a short-lived workflow artifact.
+
+The `.github/workflows/android-release.yml` workflow creates a **GitHub prerelease** with a debug-signed APK when a `v*` tag is pushed, or when run manually from the Actions tab with a version such as `v1.0.0`. This APK is for evaluation only, not a production Google Play release. A production release should use a properly configured release signing key stored as GitHub Actions secrets, plus a tested and policy-compliant app build.
