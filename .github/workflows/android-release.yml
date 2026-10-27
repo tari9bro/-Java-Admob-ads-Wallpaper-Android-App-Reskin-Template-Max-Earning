@@ -1,0 +1,50 @@
+name: Android Preview Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release tag to create (for example, v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run tests and build debug APK
+        run: ./gradlew --no-daemon test assembleDebug
+
+      - name: Publish GitHub prerelease
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Wallpaper Android Preview ${{ github.event.inputs.version || github.ref_name }}
+          tag_name: ${{ github.event.inputs.version || github.ref_name }}
+          target_commitish: ${{ github.sha }}
+          prerelease: true
+          generate_release_notes: true
+          body: |
+            Automated preview release for evaluation and testing.
+
+            **This is a debug-signed APK, not a production Google Play build.**
+            Before public distribution, customize template branding, replace the AdMob IDs with your own approved IDs, review permissions and applicable policies, test the app, and configure a secure release-signing process.
+          files: app/build/outputs/apk/debug/app-debug.apk
