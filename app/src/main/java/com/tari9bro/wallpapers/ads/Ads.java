@@ -46,7 +46,7 @@ public class Ads  {
     }
 
     public void loadBanner() {
-        LinearLayout adContainerView = (LinearLayout) activity.findViewById(R.id.banner_container);
+        LinearLayout adContainerView = activity.findViewById(R.id.banner_container);
         adView = new AdView(context);
         adView.setAdUnitId(activity.getString(R.string.bannerAd));
         adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, 360));
@@ -104,7 +104,7 @@ public class Ads  {
     }
     public void playRewarded(){
         if (Ads.rewardedAd != null) {
-                Ads.rewardedAd.show(activity, (OnUserEarnedRewardListener) rewardItem -> {
+                Ads.rewardedAd.show(activity, rewardItem -> {
                 // Handle the reward.
                 Log.d(TAG, "The user earned the reward.");
                 int rewardAmount = rewardItem.getAmount();

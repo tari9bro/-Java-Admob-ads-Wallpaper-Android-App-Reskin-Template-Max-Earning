@@ -82,7 +82,7 @@ public class NotificationHelper {
 
         PeriodicWorkRequest periodicWorkRequest2 = new PeriodicWorkRequest.Builder(
                 Method2Worker.class, commonInterval, TimeUnit.MILLISECONDS)
-                .setInitialDelay(1 * 60 * 60 * 1000, TimeUnit.MILLISECONDS) // Start after 1 hour
+                .setInitialDelay(60 * 60 * 1000, TimeUnit.MILLISECONDS) // Start after 1 hour
                 .build();
 
         PeriodicWorkRequest periodicWorkRequest3 = new PeriodicWorkRequest.Builder(

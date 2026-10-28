@@ -1,8 +1,6 @@
 package com.tari9bro.wallpapers.activity;
 
 
-import static com.tari9bro.wallpapers.ads.Ads.rewardedAd;
-
 import android.os.Build;
 import android.os.Bundle;
 

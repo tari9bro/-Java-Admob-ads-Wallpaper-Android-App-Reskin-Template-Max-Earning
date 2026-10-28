@@ -28,7 +28,7 @@ public class FileAdapter2 extends RecyclerView.Adapter<FileAdapter2.FileViewHold
     private final Context context;
     private final Activity activity;
     private final List<String> fileList;
-    private OnImageClickListener listener;
+    private final OnImageClickListener listener;
 
 
 

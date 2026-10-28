@@ -45,7 +45,7 @@ public class ImageFragment extends Fragment {
     TextView share,Download,setWall,badge;
     WallpaperSetter wallpaperSetter;
     Settings settings;
-    private AtomicInteger synchronizedPosition = new AtomicInteger(0);
+    private final AtomicInteger synchronizedPosition = new AtomicInteger(0);
     public static ImageFragment newInstance(String fileName) {
         ImageFragment fragment = new ImageFragment();
         Bundle args = new Bundle();
